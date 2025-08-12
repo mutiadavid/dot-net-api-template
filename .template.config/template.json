@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Dave", 
+  "classifications": [
+    "Web",
+    "WebAPI",
+    "ASP.NET Core",
+    "Clean Architecture"
+  ],
+  "identity": "DotNetApiTemplate",
+  "name": ".NET Web API Boilerplate",
+  "shortName": "webapi-boilerplate", 
+  "description": "A clean architecture Web API template with Docker, EF Core, MediatR, and comprehensive testing setup",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "Boilerplate",
+  "preferNameDirectory": true,
+  "symbols": {
+    "CompanyName": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "MyCompany",
+      "replaces": "YourCompany",
+      "description": "The name of the company/organization"
+    },
+    "Port0": {
+      "type": "parameter",
+      "datatype": "integer", 
+      "defaultValue": 7122,
+      "replaces": "Port0",
+      "description": "The HTTP port number for the API"
+    },
+    "Port1": {
+      "type": "parameter",
+      "datatype": "integer",
+      "defaultValue": 7123,
+      "replaces": "Port1", 
+      "description": "The HTTPS port number for the API"
+    },
+    "EnableSwagger": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": true,
+      "description": "Enable Swagger/OpenAPI documentation"
+    },
+    "EnableDocker": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": true,
+      "description": "Include Docker support"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(!EnableDocker)",
+          "exclude": [
+            "docker-compose.*",
+            "Dockerfile",
+            "src/**/Dockerfile"
+          ]
+        }
+      ]
+    }
+  ],
+  "primaryOutputs": [
+    {
+      "path": "src/Boilerplate.Api/Boilerplate.Api.csproj"
+    }
+  ],
+  "postActions": [
+    {
+      "condition": "(!skipRestore)",
+      "description": "Restore NuGet packages required by this project.",
+      "manualInstructions": [
+        {
+          "text": "Run 'dotnet restore'"
+        }
+      ],
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "continueOnError": true
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# dotnet-api-boilerplate
+# .NET Web API Boilerplate Template
 <p align="center">
   <span>English</span> |
   <a href="https://github.com/yanpitangui/dotnet-api-boilerplate/tree/main/translations/pt-br/README.md">Português</a>
@@ -13,22 +13,87 @@ A ``.Net 9.0`` WebApi boilerplate / template project. MediatR, Swagger, ~~AutoMa
 The goal of this project is to be a kickstart to your .Net WebApi, implementing the most common used patterns
 and technologies for a restful API in .net, making your work easier.
 
-# How to run
-- Use this template(github) or clone/download to your local workplace.
+## 🚀 Using This Template
+
+This project is now configured as a .NET template that you can install and use to create new projects with customizable names and settings.
+
+### Install the Template
+
+1. **From this repository:**
+   ```bash
+   git clone <this-repo-url>
+   cd dot-net-api-template
+   dotnet new install .
+   ```
+
+2. **Verify installation:**
+   ```bash
+   dotnet new list
+   # Look for ".NET Web API Boilerplate" with short name "webapi-boilerplate"
+   ```
+
+### Create a New Project
+
+#### Basic Usage
+```bash
+# Create a new project with default settings
+dotnet new webapi-boilerplate -n "MyAwesomeApi"
+cd MyAwesomeApi
+```
+
+#### Advanced Usage with Custom Parameters
+```bash
+# Create with custom configuration
+dotnet new webapi-boilerplate \
+  -n "MyCompanyApi" \
+  --CompanyName "MyCompany" \
+  --Port0 8080 \
+  --Port1 8081 \
+  --EnableDocker true \
+  --EnableSwagger true
+```
+
+#### Available Template Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `ProjectName` | string | "MyWebApi" | The name of your project (replaces "Boilerplate") |
+| `CompanyName` | string | "MyCompany" | Your company/organization name |
+| `Port0` | integer | 7122 | HTTP port number for the API |
+| `Port1` | integer | 7123 | HTTPS port number for the API |
+| `EnableSwagger` | bool | true | Include Swagger/OpenAPI documentation |
+| `EnableDocker` | bool | true | Include Docker support files |
+
+### Template Features
+
+When you create a new project using this template:
+- ✅ All namespaces will use your `ProjectName`
+- ✅ Solution and project files will be properly renamed
+- ✅ Docker configurations will use your project name
+- ✅ Port numbers will be customized if specified
+- ✅ Company references will be updated throughout
+- ✅ All "Boilerplate" references will be replaced
+
+### Uninstall Template
+```bash
+dotnet new uninstall .
+```
+
+# How to run your generated project
 - Download the latest .Net SDK and Visual Studio/Code/Rider.
 
 ## Standalone
 1. You may need a running instance of Postgres, with appropriate migrations initialized.
 	- You can run just the DB on docker. For that, run the following command: ``docker-compose up -d db-server``. Doing that, the application will be able to reach the container of the db server.
-2. Go to the src/Boilerplate.Api folder and run ``dotnet run``, or, in visual studio set the api project as startup and run as console/docker/IIS.
-3. Visit http://localhost:7122/api-docs or https://localhost:7123/api-docs to access the application's swagger.
+2. Go to the src/YourProjectName.Api folder and run ``dotnet run``, or, in visual studio set the api project as startup and run as console/docker/IIS.
+3. Visit the URLs shown in your terminal or the ports you configured to access the application's swagger.
 
 ## Docker
 1. Run ``docker-compose up -d`` in the root directory, or, in visual studio, set the docker-compose project as startup and run. This should start the application and DB.
  - 1. For docker-compose, you should run this command on the root folder: ``dotnet dev-certs https -ep https/aspnetapp.pfx -p yourpassword``
 		Replace "yourpassword" with something else in this command and the docker-compose.override.yml file.
 This creates the https certificate.
-2. Visit http://localhost:7122/api-docs or https://localhost:7123/api-docs to access the application's swagger.
+2. Visit the URLs shown in your terminal or the ports you configured to access the application's swagger.
 
 ## Running tests
 **Important**: You need to have docker up and running. The integration tests will launch a Postgres container and use it to test the API.
@@ -88,18 +153,19 @@ For more information, please take a look on swagger documentation.
 		- This project contains the dbcontext, entities configuration and migrations.
 
 
-# Adopting to your project
+# Customizing your generated project
 1. Remove/Rename all hero related stuff to your needs.
-2. Rename solution, projects, namespaces, and ruleset to your use.
-3. Change the dockerfile and docker-compose.yml to your new csproj/folder names.
-3. Give this repo a star!
+2. Update business logic, entities, and API endpoints for your domain.
+3. Configure your database connection strings and environment variables.
+4. Customize Docker settings if needed.
+5. Give this repo a star!
 
 # Migrations
-To run migrations on this project, you need the dotnet-ef tool.
+To run migrations on your generated project, you need the dotnet-ef tool.
 - Run ``dotnet tool install --global dotnet-ef``
-- Now, depending on your OS, you have different commands:
-    1. For windows: ``dotnet ef migrations add InitialCreate --startup-project .\src\Boilerplate.Api\ --project .\src\Boilerplate.Infrastructure\``
-    2. For linux/mac: ``dotnet ef migrations add InitialCreate --startup-project ./src/Boilerplate.Api/ --project ./src/Boilerplate.Infrastructure/``
+- Now, depending on your OS, you have different commands (replace "YourProjectName" with your actual project name):
+    1. For windows: ``dotnet ef migrations add InitialCreate --startup-project .\src\YourProjectName.Api\ --project .\src\YourProjectName.Infrastructure\``
+    2. For linux/mac: ``dotnet ef migrations add InitialCreate --startup-project ./src/YourProjectName.Api/ --project ./src/YourProjectName.Infrastructure/``
 # If you like it, give it a Star
 If this template was useful for you, or if you learned something, please give it a Star! :star:
 

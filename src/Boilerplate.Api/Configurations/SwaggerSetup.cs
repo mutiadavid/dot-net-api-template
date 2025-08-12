@@ -23,7 +23,7 @@ public static class SwaggerSetup
                 {
                     Title = "Boilerplate.Api",
                     Version = "v1",
-                    Description = "API Boilerplate",
+                    Description = "API ProjectName",
                     Contact = new OpenApiContact
                     {
                         Name = "Yan Pitangui",
